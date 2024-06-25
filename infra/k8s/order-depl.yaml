@@ -1,0 +1,34 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: order-depl
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: order
+#   template:
+#     metadata:
+#       labels:
+#         app: order
+#     spec:
+#       containers:
+#       - name: order
+#         image: wailkouicem/order
+#         env:
+#           - name: DATABASE_URL
+#             value: ""
+# ---
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: order-cip-srv
+# spec:
+#   selector:
+#     app: order
+#   ports:
+#   - name: order
+#     protocol: TCP
+#     port: 3002
+#     targetPort: 3002

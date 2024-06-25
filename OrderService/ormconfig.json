@@ -1,0 +1,14 @@
+ {
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "28131320Wx.",
+    "database": "orderdb",
+    "entities": ["./entities/*ts"],
+    "synchronize": true,
+    "logging": true,
+    "migrations": ["./migration/*.ts"]
+  }
+
+

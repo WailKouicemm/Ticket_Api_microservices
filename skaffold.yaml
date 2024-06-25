@@ -1,0 +1,28 @@
+apiVersion: skaffold/v2beta3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: wailkouicem/auth
+      context: authService
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src:  'src/**/*.ts'
+            dest: .
+            
+    - image: wailkouicem/ticket
+      context: TicketService
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src:  'src/**/*.ts'
+            dest: .
+  

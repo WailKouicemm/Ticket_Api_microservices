@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-mysql
+spec:
+  selector:
+    matchLabels:
+      app: order-mysql
+  template:
+    metadata:
+      labels:
+        app: order-mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: password
+            - name: MYSQL_DATABASE
+              value: orderdb
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-mysql-cpi-srv
+spec:
+  selector:
+    app: order-mysql
+  ports:
+  - name: db
+    protocol: TCP
+    port: 3306
+    targetPort: 3306
+
